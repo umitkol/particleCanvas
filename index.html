@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Particle Demo</title>
+
+<script type="text/javascript" src="src/easel.js"></script>
+<script type="text/javascript" src="src/Tween.js"></script>
+<script type="text/javascript" src="src/particle/particle.min.js"></script>
+
+<!--
+<script src="src/particle/Particle.Helper.js"></script>
+<script src="src/particle/Particle.Animation.js"></script>
+<script src="src/particle/Particle.Navigation.js"></script>
+<script src="src/particle/Particle.Crop.js"></script>
+<script src="src/particle/Particle.Container.js"></script>
+<script src="src/particle/Particle.Item.js"></script>
+<script src="src/particle/Particle.js"></script>
+-->
+
+
+</head>
+	
+<body>
+	<div>
+		<canvas id="testCanvas" width="952" height="392"></canvas>
+		<input type="button" id="testCanvasPrev" value="Prev" />
+		<input type="button" id="testCanvasNext" value="Next" />
+	</div>
+	
+	<div>
+		<canvas id="testCanvas2" width="952" height="392"></canvas>
+		<input type="button" id="testCanvas2Prev" value="Prev" />
+		<input type="button" id="testCanvas2Next" value="Next" />
+	</div>
+	
+	<div>
+		<canvas id="testCanvas3" width="952" height="392"></canvas>
+		<input type="button" id="testCanvas3Prev" value="Prev" />
+		<input type="button" id="testCanvas3Next" value="Next" />
+	</div>
+	
+	<script>
+		var data =  [
+			"img/01.jpg",
+			"img/02.jpg",
+			"img/03.jpg",
+			"img/04.jpg",
+			"img/05.jpg"
+		]
+
+		var canvas1 = new Particle({
+			canvas : "testCanvas",
+			data : data,
+			col : 5,
+			row : 5,
+			animation : {
+				effect : ParticleAnimation.top,
+				speed : .5,
+				time : 60,
+				type : Tween.easeInOutBack
+			},
+			navigation : {
+				prev : "testCanvasPrev",
+				next : "testCanvasNext"
+			}
+		});
+		
+		var data =  [
+			"img/03.jpg",
+			"img/01.jpg"
+		]
+		var canvas2 = new Particle({
+			canvas : "testCanvas2",
+			data : data,
+			col : 10,
+			row : 1,
+			animation : {
+				effect : ParticleAnimation.left,
+				speed : .5,
+				time : 60,
+				type : Tween.easeOutCirc,
+				callBack : function(container) {
+					console.log(container);
+				}
+			},
+			navigation : {
+				prev : "testCanvas2Prev",
+				next : "testCanvas2Next"
+			}
+		});
+		
+		var data =  [
+			"img/04.jpg",
+			"img/02.jpg",
+			"img/05.jpg"
+		]
+		var canvas3 = new Particle({
+			canvas : "testCanvas3",
+			data : data,
+			col : 5,
+			row : 5,
+			animation : {
+				effect : ParticleAnimation.bottom,
+				speed : .5,
+				time : 50,
+				type : Tween.easeOutExpo,
+				callBack : function(container) {
+					console.log(container);
+				}
+			},
+			navigation : {
+				prev : "testCanvas3Prev",
+				next : "testCanvas3Next"
+			}
+		});
+		
+		canvas1, canvas2, canvas3, data = null;
+		
+
+	</script>
+</body>
+</html>
